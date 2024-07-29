@@ -9,6 +9,8 @@ class Category:
         self.name = name
         self.description = description
         self.goods = goods
+        Category.total_of_category += 1
+
 
 class Product:
     name: str
@@ -21,3 +23,4 @@ class Product:
         self.description = description
         self.price = price
         self.quantity_in_stock = quantity_in_stock
+        Category.total_of_products += 1
