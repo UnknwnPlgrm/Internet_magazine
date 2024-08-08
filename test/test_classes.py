@@ -23,5 +23,10 @@ def test_product(product_example, product_example_2, product_example_3, product_
     assert product_example.price == 49999.99
     assert product_example.quantity_in_stock == 4
     assert classes.Category.total_of_products == 4
+    product = classes.Product.create_product("камень", "я не дам", 0, 0)
+    assert product.name == "камень"
+    assert product.description == "я не дам"
+    assert product.is_low_price == True
+
 
 

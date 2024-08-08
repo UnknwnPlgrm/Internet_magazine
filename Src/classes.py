@@ -38,5 +38,13 @@ class Product:
         self.quantity_in_stock = quantity_in_stock
         Category.total_of_products += 1
 
+    @classmethod
+    def create_product(cls, name, description, price, quantity_of_stock):
+        created_product = cls(name, description, price, quantity_of_stock)
+        return created_product
 
-
+    @property
+    def is_low_price(self):
+        if self.price <= 0:
+            print("Некорректная цена товара")
+            return True
