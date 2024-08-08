@@ -1,27 +1,18 @@
 from Src import classes
 
 
-def test_category(category_example, category_example_2):
+def test_category(category_example, category_example_2, product_example_3,
+                  product_example_4, product_example, product_example_2, goods_list_example):
     assert category_example.name == "Товары для дома"
     assert category_example.description == "Бытовая электроника, мебель"
-    assert category_example.goods == [
-        "Стиральная машина",
-        "Холодильник",
-        "Микроволновая печь",
-        "Столешница",
-        "Стул",
-        "Стол",
-    ]
-    category_example.goods = "Электрический чайник"
-    assert category_example.goods == [
-        "Стиральная машина",
-        "Холодильник",
-        "Микроволновая печь",
-        "Столешница",
-        "Стул",
-        "Стол",
-        "Электрический чайник"
-    ]
+    assert category_example.goods == []
+    category_example.goods = product_example
+    category_example.goods = product_example_2
+    category_example.goods = product_example_3
+    category_example.goods = product_example_4
+    assert category_example.goods == [product_example, product_example_2,
+                                      product_example_3, product_example_4]
+    assert category_example.goods_list == goods_list_example
     assert classes.Category.total_of_category == 2
 
 
