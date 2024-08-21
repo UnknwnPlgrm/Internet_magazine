@@ -1,8 +1,15 @@
 from Src import classes
 
 
-def test_category(category_example, category_example_2, product_example_3,
-                  product_example_4, product_example, product_example_2, goods_list_example):
+def test_category(
+    category_example,
+    category_example_2,
+    product_example_3,
+    product_example_4,
+    product_example,
+    product_example_2,
+    goods_list_example,
+):
     assert category_example.name == "Товары для дома"
     assert category_example.description == "Бытовая электроника, мебель"
     assert category_example.goods == []
@@ -10,12 +17,9 @@ def test_category(category_example, category_example_2, product_example_3,
     category_example.goods = product_example_2
     category_example.goods = product_example_3
     category_example.goods = product_example_4
-    assert category_example.goods == [product_example, product_example_2,
-                                      product_example_3, product_example_4]
+    assert category_example.goods == [product_example, product_example_2, product_example_3, product_example_4]
     assert category_example.goods_list == goods_list_example
     assert classes.Category.total_of_category == 2
-
-
 
 
 def test_product(product_example, product_example_2, product_example_3, product_example_4):
@@ -31,3 +35,9 @@ def test_product(product_example, product_example_2, product_example_3, product_
     assert product_new.quantity_in_stock == 5
     assert product_new.price == 30
     assert classes.Category.total_of_products == 1
+
+
+def test_product_price(mocker, product_example):
+    mocker.patch("builtins.input", return_value="y")
+    product_example.set_low_price = 200
+    assert product_example.price == 200
