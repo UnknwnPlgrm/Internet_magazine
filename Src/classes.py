@@ -2,7 +2,6 @@ class Category:
     name: str
     description: str
     __goods: list
-    goods: list
     total_of_category = 0
     total_of_products = 0
 
@@ -30,17 +29,26 @@ class Product:
     description: str
     price: float
     quantity_in_stock: int
+    products_list = []
 
     def __init__(self, name, description, price, quantity_in_stock):
         self.name = name
         self.description = description
         self.price = price
         self.quantity_in_stock = quantity_in_stock
-        Category.total_of_products += 1
+
 
     @classmethod
-    def create_product(cls, name, description, price, quantity_of_stock):
-        created_product = cls(name, description, price, quantity_of_stock)
+    def create_product(cls, name, description, price, quantity_in_stock):
+        for product in Product.products_list:
+            if product.name.lower == name.lower:
+                product.quantity_in_stock += quantity_in_stock
+                if product.price < price:
+                    product.price = price
+                return product
+        created_product = cls(name, description, price, quantity_in_stock)
+        Product.products_list.append(created_product)
+        Category.total_of_products += 1
         return created_product
 
     @property
